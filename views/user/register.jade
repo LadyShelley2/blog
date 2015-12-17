@@ -1,0 +1,27 @@
+//
+   Created by lbb on 2015/10/19.
+
+extends ../layout/layout.jade
+block content
+   .container
+      #wrapper
+         .aw-user-box
+            .mod-body.clearfix
+               .content
+                  form(method="post",action("/user/register"))
+                     .col-sm-12
+                        ul
+                           li
+                              h3 用户注册
+                           li
+                              input#username.pb-user-width.input-default.form-control(name="user[username]",type="text", placeholder="Username")
+                           li
+                              input#nickname.pb-user-width.input-default.form-control(name="user[nickname]",type="text",placeholder="Nickname")
+                           li
+                              input#password.pb-user-width.input-default.form-control(name="user[password]",type="password",placeholder="Password")
+                           li
+                              input#password_confirm.pb-user-width.input-default.form-control(name="user[password_confirm]",type="password",placeholder="Password again")
+                           li
+                              input#email.pb-user-width.input-default.form-control(name="user[email]",type="email",placeholder="Email")
+                           li
+                              button#submitBtn.pb-float-right.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored(type="submit",style="margin-right:16px") Register

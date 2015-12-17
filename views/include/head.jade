@@ -1,0 +1,15 @@
+//   Created by lbb on 2015/10/19.
+header.mdl-layout__header.layout-transparent.mdl-layout__header--transparent
+   .mdl-layout__header-row
+      span.mdl-layout-title 木子贝
+      .mdl-layout-spacer
+      .mdl-navigation
+         //a.mdl-navigation__link(href="/home") 首页
+         a.mdl-navigation__link(href="/article/list") 文章
+         if user
+            a.mdl-navigation__link(href="/article/add") 写文章
+            a.mdl-navigation__link(href="/about") !{user.username}
+            a.mdl-navigation__link(href="/user/logout") 退出
+         else
+            a.mdl-navigation__link(href="/user/login") 登录
+            a.mdl-navigation__link(href="/user/register") 注册

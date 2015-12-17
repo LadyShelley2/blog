@@ -1,0 +1,33 @@
+//
+   Created by lbb on 2015/10/19.
+extends ../layout/layout-editor
+block content
+   main.mdl-layout__content
+      .demo-container
+         section.section--center.mdl-shadow--2dp.mdl-color--white.article-add-panel
+            form(method="post",action="/article/add")
+               .pb-margin-vertical-10px
+                  h6 题目
+                  input#title.input-default.mdl-cell--9-col-desktop(name="article[title]",placeholder="请输入文章标题")
+                  select.btn.btn-default.mdl-cell--2-col-desktop.pb-float-right(id="ifOriginal",name="article[isOriginal]")
+                     option(value="false") 转载
+                     option(value="true") 原创
+               .pb-margin-vertical-10px
+                  h6 分类
+                  select.btn.btn-default(id="clazz",name="article[clazz]")
+                     each c in clazzes
+                        option(value= "#{c._id}") #{c.desc}
+                  a.pb-margin-horizon-10px(href="/clazz/add") 添加分类
+               .pb-margin-vertical-10px
+                  h6 内容
+                  script(id='container',name="article[content]")
+                  script.
+                     var ue =UE.getEditor('container')
+               .pb-margin-vertical-10px
+                  h6 关键字
+                  input.input-default.mdl-cell--9-col-desktop(name="keywords",id="keywords",type="text",maxlength=20,placeholder="请用分号分隔关键字，总长不得超过20")
+               .pb-margin-vertical-10px.pb-height-36px
+                  //button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored.pb-margin-horizon-10px(id="saveButton" ) 保存草稿
+                  button.pb-float-right.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored.pb-margin-horizon-10px(id="submitButton" type="submit") 发表文章
+
+

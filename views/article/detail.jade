@@ -1,0 +1,64 @@
+//
+   Created by lbb on 2015/10/19.
+
+//
+   Created by lbb on 2015/10/19.
+//extends ../layout/layout.jade
+//block content
+//   p="文章编号"
+//   p=aid
+extends ../layout/layout
+block content
+    .demo-main.mdl-layout__content
+        .article-container
+            .demo-content.mdl-color--white.mdl-shadow--4dp.content.mdl-color-text--grey-800.mdl-cell.mdl-cell--12-col
+                .demo-crumbs.mdl-color-text--grey-500
+                    p
+                        a.pb-main-color(href="/article/list") 所有文章 /
+                        a.pb-main-color(href="/article/detail/#{article._id}")!{article.title}
+                    h3 !{article.title}
+                    .article-info
+                        if (article.isOriginal.toString() == "true")
+                            span.title-label!{article.meta._createAt}
+                                i.material-icons.md-24.title-label-icon(id="icon") explore
+                                .mdl-tooltip(for="icon") 原创
+                        else
+                            span.title-label!{article.meta._createAt}
+                                i.material-icons.md-24.title-label-icon(id="icon") extension
+                                .mdl-tooltip(for="icon") 转载
+                        span.pb-margin-horizon-10px
+                            span.title-label!{article.clazz.desc}
+                                i.material-icons.md-24.title-label-icon(id="class") class
+                                .mdl-tooltip(for="class") 分类
+                        span.pb-margin-horizon-10px
+                            span.title-label !{article.viewTime}
+                                i.material-icons.md-24.title-label-icon(id="view") visibility
+                                .mdl-tooltip(for="view") 浏览量
+                        //if(user._id.toString()==article.author.toString())
+                        //    span.pb-margin-horizon-10px.delete
+                        //        a.title-label(href="/article/remove/#{article._id}") 删除
+                        //            i.material-icons.md-24.title-label-icon delete
+                        .pb-margin-vertical-10px
+                            span.title-label
+                                each k in article.keywords
+                                    span.pb-margin-horizon-10px !{k}
+                                i.material-icons.md-24.title-label-icon(id="keyword") bookmark
+                                .mdl-tooltip(for="keyword") 关键字
+                    .content-detail
+                        p !{article.content}
+                    <!-- 多说评论框 start -->
+                    .ds-thread(data-thread-key="#{article._id}" data-title="#{article.title}" data-url="/article/detail/#{article._id}")
+                    <!-- 多说评论框 end -->
+                    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                    script(type="text/javascript").
+                        var duoshuoQuery = {short_name: "leebeibei"};
+                        (function () {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0]
+                        || document.getElementsByTagName('body')[0]).appendChild(ds);
+                        })();
+                    <!-- 多说公共JS代码 end -->
+

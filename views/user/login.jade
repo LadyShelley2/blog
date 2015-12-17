@@ -1,0 +1,22 @@
+//
+   Created by lbb on 2015/10/19.
+
+extends ../layout/layout
+block content
+   #wrapper
+      .aw-user-box
+         .mod-body.clearfix
+            .content
+                form(method="post",action="/user/login")
+                  .col-sm-12
+                     ul
+                        li
+                           h3 用户登录
+                        li
+                           input#username.pb-user-width.input-default(name="username",placeholder="Username or Email",type="text")
+                        li
+                           input#password.pb-user-width.input-default(name="password",placeholder="Password",type="password")
+                        li
+                           button#loginBtn.pb-float-right.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored.pb-margin-horizon-10px(type="submit") Login
+                        li
+                           a(type="submit",href="/user/register") Register

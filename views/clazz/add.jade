@@ -1,0 +1,19 @@
+//
+   Created by lbb on 2015/10/21.
+
+extends ../layout/layout.jade
+block content
+   .mdl-layout__content
+      .demo-container
+         section.section--center.mdl-shadow--2dp.mdl-color--white.article-add-panel
+            form(method="post",action="/clazz/add")
+                  h3="添加分类"
+                  input.input-default.mdl-cell--9-col-desktop(id="addClazzInput",name="newClazz",placeholder="输入添加的分类",type=text)
+                  button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--colored.mdl-cell--2-col-desktop.pb-float-right(id="addClassBtn") 添加
+            .clazz-panel.pb-margin-vertical-10px
+               each c in clazzes
+                  span.clazz-block
+                     span.clazz-block-link !{c.desc}
+                     //span.mdl-badge(data-badge="#{c.count}")
+                     //   a.clazz-block-link(id="#{c.id}" href="/user/login") !{c.desc}
+                     //.mdl-tooltip(for="#{c.id}")   !{c.desc}

@@ -1,0 +1,60 @@
+//
+   Created by lbb on 2015/10/19.
+extends ../layout/layout
+block content
+    //.container
+    //   .child-container
+    //      //.sidebar
+    //         //include ../include/articleClazz
+    //         //include ../include/tags
+    //         //include ../include/hottestArticle
+    //      .pb-page-right
+    .mdl-tabs.mdl-js-tabs
+        .mdl-tabs__tab-bar
+            a.mdl-tabs__tab.is-active(href="#panel-1") 全部
+            a.mdl-tabs__tab(href="#panel-2") 热门
+            each c in _clazzes
+                a.mdl-tabs__tab(href="#panel#{c._id}") !{c.desc}
+
+        section#panel-1.is-active.mdl-tabs__panel.section--center.mdl-shadow--2dp.mdl-color--white.article-list
+            ul.section--center.mdl-grid.mdl-grid--no-spacing
+                each article in articles
+                    li.mdl-cell.mdl-cell--12-col-desktop.mdl-cell--8-col-tablet.mdl-cell--4-col-phone0.article-item
+                        if (article.isOriginal.toString()=="true")
+                            a.pb-main-color.title-label(href="/article/detail/#{article._id}")!{article.title}
+                                i.material-icons.md-24.title-label-icon(id="#icon#{article._id}") explore
+                                .mdl-tooltip(for="#icon#{article._id}") 原创
+                        else
+                            a.pb-main-color.title-label(href="/article/detail/#{article._id}")!{article.title}
+                                i.material-icons.md-24.title-label-icon(id="#icon#{article._id}")  extension
+                                .mdl-tooltip(for="#icon#{article._id}") 转载
+                        .date !{article.meta._createAt}
+        section#panel-2.mdl-tabs__panel.section--center.mdl-shadow--2dp.mdl-color--white.article-list
+            ul.section--center.mdl-grid.mdl-grid--no-spacing
+                each article in hot_articles
+                    li.mdl-cell.mdl-cell--12-col-desktop.mdl-cell--8-col-tablet.mdl-cell--4-col-phone0.article-item
+                        if (article.isOriginal.toString() == "true")
+                            a.pb-main-color.title-label(href="/article/detail/#{article._id}")!{article.title}
+                                i.material-icons.md-24.title-label-icon(id="#icon#{article._id}") explore
+                                .mdl-tooltip(for="#icon#{article._id}") 原创
+                        else
+                            a.pb-main-color.title-label(href="/article/detail/#{article._id}")!{article.title}
+                                i.material-icons.md-24.title-label-icon(id="#icon#{article._id}")  extension
+                                .mdl-tooltip(for="#icon#{article._id}") 转载
+                        .date !{article.meta._createAt}
+                            span.mdl-badge.pb-bg-secondary-color(data-badge="#{article.viewTime}")
+        each c in clazzes
+            section(id="panel#{c._id}").mdl-tabs__panel.section--center.mdl-shadow--2dp.mdl-color--white.article-list
+                ul.section--center.mdl-grid.mdl-grid--no-spacing
+                    each article in articles
+                        if (article.clazz.toString() == c._id.toString())
+                            li.mdl-cell.mdl-cell--12-col-desktop.mdl-cell--8-col-tablet.mdl-cell--4-col-phone0.article-item
+                                if (article.isOriginal.toString() == "true")
+                                    a.pb-main-color.title-label(href="/article/detail/#{article._id}")!{article.title}
+                                        i.material-icons.md-24.title-label-icon(id="#i#{article._id}") explore
+                                        .mdl-tooltip(for="#i#{article._id}") 原创
+                                else
+                                    a.pb-main-color.title-label(href="/article/detail/#{article._id}")!{article.title}
+                                        i.material-icons.md-24.title-label-icon(id="#i#{article._id}")  extension
+                                        .mdl-tooltip(for="#i#{article._id}") 转载
+                                .date !{article.meta._createAt}
