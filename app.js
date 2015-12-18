@@ -66,7 +66,6 @@ app.use("/ueditor/ue", ueditor(siteSetting.dataPath, function(req, res, next) {
     if(req.query.action === 'uploadimage'){
         var foo = req.ueditor;
         var imgname = req.ueditor.filename;
-
         var img_url = '/picture/ueditor/';
         res.ue_up(img_url); //你只要输入要保存的地址 。保存操作交给ueditor来做
     }
